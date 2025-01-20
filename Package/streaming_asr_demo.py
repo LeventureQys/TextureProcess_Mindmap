@@ -27,7 +27,7 @@ import websockets
 appid = "8809079673"    # 项目的 appid
 token = "h1l7Vbko_DxroZDA1Hhioz1ebwivHsOJ"    # 项目的 token
 cluster = "volcengine_streaming_common"  # 请求的集群
-audio_path = "Sample/1.wav"  # 本地音频路径
+
 audio_format = "wav"   # wav 或者 mp3，根据实际音频格式设置
 
 PROTOCOL_VERSION = 0b0001
@@ -339,7 +339,7 @@ def execute_one(audio_item, cluster, **kwargs):
     result = asyncio.run(asr_http_client.execute())
     return {"id": audio_id, "path": audio_path, "result": result}
 
-def test_one():
+def test_one(audio_path):
     result = execute_one(
         {
             'id': 1,
@@ -350,7 +350,7 @@ def test_one():
         token=token,
         format=audio_format,
     )
-    print(result)
+    return result
 
 
 if __name__ == '__main__':
